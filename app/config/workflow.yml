@@ -1,0 +1,21 @@
+framework:
+    workflows:
+        cart:
+            marking_store:
+                type: single_state
+            supports:
+                - AppBundle\Entity\Cart
+            places:
+                - shopping    # ショッピング中
+                - confirming  # 確認中
+                - completed   # 完了
+            transitions:
+                confirm:  # 確認
+                    from: shopping
+                    to: confirming
+                back:     # 戻る
+                    from: confirming
+                    to: shopping
+                complete: # 完了
+                    from: confirming
+                    to: completed
